@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turkish Food Market</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f5f5;
+}
+
+header{
+    background:#d62828;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.language-switcher{
+    margin-top:15px;
+}
+
+.language-switcher button{
+    padding:8px 14px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    margin:5px;
+}
+
+.cart{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+    z-index:1000;
+}
+
+.category{
+    padding:30px;
+}
+
+.category h2{
+    text-align:center;
+    color:#d62828;
+    margin-bottom:20px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.price{
+    color:#d62828;
+    font-size:20px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.buy{
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#d62828;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.buy:hover{
+    background:#b71c1c;
+}
+
+footer{
+    text-align:center;
+    background:#222;
+    color:white;
+    padding:20px;
+    margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1 id="title">🇹🇷 Turkish Food Market</h1>
+    <p id="subtitle">Настоящая турецкая еда с доставкой</p>
+
+    <div class="language-switcher">
+        <button onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="changeLanguage('kz')">🇰🇿 Қазақша</button>
+        <button onclick="changeLanguage('en')">🇬🇧 English</button>
+    </div>
+</header>
+
+<div class="cart">
+    🛒 <span id="cartText">Корзина</span>:
+    <span id="cart-count">0</span>
+</div>
+
+<!-- ЕДА -->
+<section class="category">
+    <h2>🍽 Еда</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?1">
+            <div class="card-content">
+                <h3>Донер Кебаб</h3>
+                <p>Сочный донер с овощами</p>
+                <div class="price">4500 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?2">
+            <div class="card-content">
+                <h3>Пиде</h3>
+                <p>Турецкая лодочка с сыром</p>
+                <div class="price">3800 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?3">
+            <div class="card-content">
+                <h3>Лахмаджун</h3>
+                <p>Турецкая пицца</p>
+                <div class="price">3200 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- НАПИТКИ -->
+<section class="category">
+    <h2>🥤 Напитки</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?4">
+            <div class="card-content">
+                <h3>Айран</h3>
+                <p>Освежающий напиток</p>
+                <div class="price">1200 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?5">
+            <div class="card-content">
+                <h3>Турецкий Чай</h3>
+                <p>Крепкий черный чай</p>
+                <div class="price">1500 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?6">
+            <div class="card-content">
+                <h3>Турецкий Кофе</h3>
+                <p>Настоящий кофе по-турецки</p>
+                <div class="price">1800 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- МОРОЖЕНОЕ -->
+<section class="category">
+    <h2>🍦 Мороженое</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?7">
+            <div class="card-content">
+                <h3>Ванильная Дондурма</h3>
+                <p>Турецкое мороженое</p>
+                <div class="price">2500 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?8">
+            <div class="card-content">
+                <h3>Фисташковая Дондурма</h3>
+                <p>С натуральными фисташками</p>
+                <div class="price">2800 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?9">
+            <div class="card-content">
+                <h3>Шоколадная Дондурма</h3>
+                <p>Для любителей шоколада</p>
+                <div class="price">2700 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ДЕСЕРТЫ -->
+<section class="category">
+    <h2>🍰 Десерты</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?10">
+            <div class="card-content">
+                <h3>Баклава</h3>
+                <p>Традиционная сладость</p>
+                <div class="price">3500 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?11">
+            <div class="card-content">
+                <h3>Лукум</h3>
+                <p>С фисташками</p>
+                <div class="price">2500 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/400/250?12">
+            <div class="card-content">
+                <h3>Кюнефе</h3>
+                <p>Сырный десерт</p>
+                <div class="price">4000 ₸</div>
+                <button class="buy" onclick="addToCart()">Добавить</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Turkish Food Market
+</footer>
+
+<script>
+let cart = 0;
+
+function addToCart(){
+    cart++;
+    document.getElementById("cart-count").innerText = cart;
+}
+
+const translations = {
+ru:{
+title:"🇹🇷 Turkish Food Market",
+subtitle:"Настоящая турецкая еда с доставкой",
+cart:"Корзина"
+},
+kz:{
+title:"🇹🇷 Turkish Food Market",
+subtitle:"Нағыз түрік тағамдары жеткізіледі",
+cart:"Себет"
+},
+en:{
+title:"🇹🇷 Turkish Food Market",
+subtitle:"Authentic Turkish food with delivery",
+cart:"Cart"
+}
+};
+
+function changeLanguage(lang){
+    document.getElementById("title").innerText =
+    translations[lang].title;
+
+    document.getElementById("subtitle").innerText =
+    translations[lang].subtitle;
+
+    document.getElementById("cartText").innerText =
+    translations[lang].cart;
+}
+</script>
+
+</body>
+</html>
